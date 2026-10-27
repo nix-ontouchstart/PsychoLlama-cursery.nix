@@ -129,7 +129,7 @@ html.div [
           (html.div { class = "grid min-h-40 flex-1"; } [
             (html.iframe {
               id = "demo-preview";
-              src = "/playground-frame/";
+              src = "playground-frame/";
               title = "Demo";
               class = "size-full noscript:hidden";
             })

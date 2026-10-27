@@ -9,17 +9,17 @@ let
       body = "The page you're reading now is written in Nix, including the interactive demo.";
     }
     {
-      href = "/docs/";
+      href = "docs/";
       name = "Documentation";
       body = "Authored in Nix and pre-rendered to static pages.";
     }
     {
-      href = "/hello-world/";
+      href = "hello-world/";
       name = "Hello world";
       body = "Type your name, see text update.";
     }
     {
-      href = "/todomvc/";
+      href = "todomvc/";
       name = "TodoMVC";
       body = "The classic todo list, with filters and editing.";
     }
