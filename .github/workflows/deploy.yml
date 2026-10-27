@@ -1,0 +1,39 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["demo"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: macos-26
+    
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Platform
+        run: uname -a
+      - name: install nix from https://github.com/DeterminateSystems/nix-installer/releases/download/v3.23.3/nix-installer.sh
+        run: cat nix-installer.sh | sh -s -- install --no-confirm
+      - name: nix version
+        run: nix --version
+      - name: nix flake show
+        run: nix flake show
+
+      - name: Build Project
+        run: nix develop --command bash -c 'cd packages/website&&pnpm build --base /PsychoLlama-cursery.nix' 
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./packages/website/dist
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v5
+
